@@ -12,9 +12,10 @@ class MockSampleSpec extends Specification {
 
         when:
         sample.sendMsg("hello")
+        sample.sendMsg("hello")
 
         then:
-        1 * mgr.send("hello")
+        2 * mgr.send("hello")
     }
 
     def "戻り値を返す(Stubbing)" () {
@@ -41,7 +42,7 @@ class MockSampleSpec extends Specification {
         noExceptionThrown()
     }
 
-    def "例外が発生したを確認する" () {
+    def "例外が発生したことを確認する" () {
         setup:
         def sample = new MockSample()
         def mgr = Mock(MessageManager)
