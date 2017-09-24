@@ -1,3 +1,4 @@
+import sample.Calculator
 import sample.MessageManager
 import sample.MockSample
 import spock.lang.Specification
@@ -54,5 +55,14 @@ class MockSampleSpec extends Specification {
 
         then:
         thrown(IllegalArgumentException)
+    }
+
+    def "interfaceなしでMockをつくる" () {
+        setup:
+        def calc = Mock(Calculator)
+        calc.add(_, _) >> 4
+
+        expect:
+        calc.add(1,2) == 4
     }
 }
