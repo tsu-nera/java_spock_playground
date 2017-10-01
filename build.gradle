@@ -2,11 +2,24 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'groovy'
 apply plugin: 'java'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+findbugs {
+    reportsDir = file("./build/reports/findbugs")
+    ignoreFailures = true
+}
+
+checkstyle {
+    reportsDir = file('./build/reports/checkstyle')
+    configFile = file('./sun_checks.xml')
+    ignoreFailures = true
 }
 
 dependencies {
