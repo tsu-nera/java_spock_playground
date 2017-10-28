@@ -1,6 +1,7 @@
 package spock
 
 import sample.Calculator
+import sample.Job
 import sample.SampleCalcJob
 import spock.lang.Specification
 
@@ -23,12 +24,13 @@ class SampleCalcJobSpec extends Specification {
     }
 
     def "test mode on"() {
-        when:
+        setup:
         job.setTestMode(true)
 
         def mockA = Mock(Calculator)
         def mockB = Mock(Calculator)
         def mockC = Mock(Calculator)
+        def mockJob = Mock(Job)
 
         mockA.add(1,2) >> 1
         mockB.add(3,4) >> 2
@@ -37,7 +39,9 @@ class SampleCalcJobSpec extends Specification {
         job.setInstanceA(mockA)
         job.setInstanceB(mockB)
         job.setInstanceC(mockC)
+        job.setInstanceJob(mockJob)
 
+        when:
         job.prepare()
         job.execute()
 
@@ -45,6 +49,9 @@ class SampleCalcJobSpec extends Specification {
         job.getResultA() == 1
         job.getResultB() == 2
         job.getResultC() == 3
+
+        1 * mockJob.prepare()
+        1 * mockJob.execute()
     }
 
 }

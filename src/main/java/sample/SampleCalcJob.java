@@ -7,6 +7,7 @@ public class SampleCalcJob implements Job {
     private @Setter Calculator instanceA;
     private @Setter Calculator instanceB;
     private @Setter Calculator instanceC;
+    private @Setter Job instanceJob;
 
     private @Getter int resultA;
     private @Getter int resultB;
@@ -24,6 +25,7 @@ public class SampleCalcJob implements Job {
             instanceA = new Calculator();
             instanceB = new Calculator();
             instanceC = new Calculator();
+            instanceJob = new SampleJob();
         }
     }
 
@@ -32,6 +34,9 @@ public class SampleCalcJob implements Job {
         resultA = instanceA.add(1,2);
         resultB = instanceB.add(3,4);
         resultC = instanceC.add(5,6);
+
+        instanceJob.prepare();
+        instanceJob.execute();
     }
 
     @Override
