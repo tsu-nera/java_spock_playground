@@ -4,7 +4,7 @@ import sample.Calculator
 import sample.SampleCalcJob
 import spock.lang.Specification
 
-class SapmpleCalcSpec extends Specification {
+class SampleCalcJobSpec extends Specification {
     SampleCalcJob job
 
     def setup() {
