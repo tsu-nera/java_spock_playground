@@ -38,7 +38,7 @@ public class Pair {
             nList.remove(id);
             long rCount = nList.stream()
                     .map(accessor::getStatus)
-                    .map(s -> isReady(s))
+                    .map(this::isReady)
                     .filter(r -> r == Boolean.FALSE)
                     .count();
 
@@ -51,12 +51,13 @@ public class Pair {
     }
 
     private Boolean isReady(String status) {
-        if (status == "Normal") {
-            return Boolean.TRUE;
-        } else if (status == "Warning") {
-            return Boolean.TRUE;
-        } else {
-            return Boolean.FALSE;
+        switch (status) {
+            case "Normal":
+                return Boolean.TRUE;
+            case "Warning":
+                return Boolean.TRUE;
+            default:
+                return Boolean.FALSE;
         }
     }
 }
