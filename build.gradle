@@ -4,6 +4,7 @@ apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
+apply plugin: "jacoco"
 
 sourceCompatibility = 1.8
 
@@ -20,6 +21,11 @@ checkstyle {
     reportsDir = file('./build/reports/checkstyle')
     configFile = file('./sun_checks.xml')
     ignoreFailures = true
+}
+
+jacoco {
+    toolVersion = "0.7.9"
+    reportsDir = file("./build/reports/jacoco")
 }
 
 dependencies {
