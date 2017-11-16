@@ -1,0 +1,1 @@
+INSERT INTO HOGE VALUES (1, 'hoge');
