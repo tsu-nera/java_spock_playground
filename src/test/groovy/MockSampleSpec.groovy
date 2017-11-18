@@ -4,12 +4,17 @@ import sample.MockSample
 import spock.lang.Specification
 
 class MockSampleSpec extends Specification {
+    MockSample sample
+    MessageManager mgr
+
+    def setup() {
+        sample = new MockSample()
+        mgr = Mock(MessageManager)
+    }
 
     def "呼び出し引数をチェック(Mocking)"() {
         setup:
-        def sample = new MockSample()
-        def mgr = Mock(MessageManager)
-        sample.setManager(mgr)
+        sample.setMgr(mgr);
 
         when:
         sample.sendMsg("hello")
@@ -21,10 +26,8 @@ class MockSampleSpec extends Specification {
 
     def "戻り値を返す(Stubbing)" () {
         setup:
-        def sample = new MockSample()
-        def mgr = Mock(MessageManager)
         mgr.send2(_) >> 1
-        sample.setManager(mgr)
+        sample.setMgr(mgr)
 
         expect:
         sample.sendMsg2("hello") == 1
@@ -32,9 +35,7 @@ class MockSampleSpec extends Specification {
 
     def "例外が発生しないことを確認する" () {
         setup:
-        def sample = new MockSample()
-        def mgr = Mock(MessageManager)
-        sample.setManager(mgr)
+        sample.setMgr(mgr)
 
         when:
         sample.sendMsg("hello")
@@ -45,10 +46,8 @@ class MockSampleSpec extends Specification {
 
     def "例外が発生したことを確認する" () {
         setup:
-        def sample = new MockSample()
-        def mgr = Mock(MessageManager)
         mgr.send(_) >> {throw new IllegalArgumentException()}
-        sample.setManager(mgr)
+        sample.setMgr(mgr)
 
         when:
         sample.sendMsg("hoge")
