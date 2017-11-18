@@ -54,6 +54,6 @@ dependencies {
 flyway {
     url = 'jdbc:postgresql://localhost:5434/sampleDB'
     user = 'postgres'
-    password = 'tu-nera'
+    password = 'postgres'
 }
 
