@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <HOGE ID="1" STATE="normal" NAME="name#1"/>
+    <HOGE ID="2" STATE="normal" NAME="name#2"/>
+    <HOGE ID="3" STATE="error" NAME="name#3"/>
+    <HOGE ID="4" STATE="normal" NAME="name#4"/>
+    <HOGE ID="5" STATE="normal" NAME="name#5"/>
+</dataset>
