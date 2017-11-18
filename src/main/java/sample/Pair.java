@@ -1,27 +1,26 @@
 package sample;
 
-import lombok.Setter;
-
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pair {
 
-    @Setter
-    DbAccessor accessor;
+    public Boolean isMD(Long id) throws SQLException {
+        int nbCount;
+        Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5434/sampleDB", "postgres", "postgres");
 
-    public Long getPairId(Long id) {
-        return ((id - 1) ^ 1) + 1;
-    }
+        PreparedStatement stmt = conn.prepareStatement("select count(*) as cnt from NB;");
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        nbCount = Integer.parseInt(rs.getString("cnt"));
 
-    public Boolean isMD(Long id, Long nbCount) {
+        System.out.println(nbCount);
+
         List<Long> nList = new ArrayList<>();
-
-        if (nbCount == 2){
-            nList.add(1L);
-            nList.add(4L);
-            nList.add(3L);
-            nList.add(2L);
+        if (nbCount < 3){
+            return Boolean.FALSE;
         } else if (nbCount == 3) {
             nList.add(1L);
             nList.add(4L);
@@ -37,7 +36,18 @@ public class Pair {
         if (nList.contains(id)) {
             nList.remove(id);
             long rCount = nList.stream()
-                    .map(accessor::getStatus)
+                    .map(i -> "node#" + i.toString())
+                    .map(name -> String.format("select state from HOGE where name = '%s';", name))
+                    .map(sql -> {
+                        try {
+                            ResultSet r = conn.prepareStatement(sql).executeQuery();
+                            r.next();
+                            return (String)r.getObject(1);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                        return "";
+                    })
                     .map(this::isReady)
                     .filter(r -> r == Boolean.FALSE)
                     .count();
@@ -46,7 +56,6 @@ public class Pair {
                 return Boolean.TRUE;
             }
         }
-
         return Boolean.FALSE;
     }
 
@@ -59,5 +68,9 @@ public class Pair {
             default:
                 return Boolean.FALSE;
         }
+    }
+
+    public Long getPairId(Long id) {
+        return ((id - 1) ^ 1) + 1;
     }
 }

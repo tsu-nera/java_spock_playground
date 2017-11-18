@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <NB ID="1" NAME="NB#1"/>
+    <NB ID="2" NAME="NB#2"/>
+    <NB ID="3" NAME="NB#2"/>
+    <HOGE ID="1" STATE="Normal" NAME="node#1"/>
+    <HOGE ID="2" STATE="Fault" NAME="node#2"/>
+    <HOGE ID="3" STATE="Normal" NAME="node#3"/>
+    <HOGE ID="4" STATE="Normal" NAME="node#4"/>
+    <HOGE ID="5" STATE="Fault" NAME="node#5"/>
+    <HOGE ID="6" STATE="Normal" NAME="node#6"/>
+</dataset>

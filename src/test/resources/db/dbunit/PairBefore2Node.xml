@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <NB ID="1" NAME="NB#1"/>
+    <NB ID="2" NAME="NB#2"/>
+    <HOGE ID="1" STATE="normal" NAME="node#1"/>
+    <HOGE ID="2" STATE="normal" NAME="node#2"/>
+    <HOGE ID="3" STATE="normal" NAME="node#3"/>
+    <HOGE ID="4" STATE="normal" NAME="node#4"/>
+</dataset>
