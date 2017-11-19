@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <STORAGE ID="1"/>
+    <STORAGE ID="1" MODEL="Small"/>
     <NB ID="1" NAME="NB#1" STORAGE_ID="1"/>
     <NB ID="2" NAME="NB#2" STORAGE_ID="1"/>
     <NODE ID="1" STATE="Normal" NAME="Node#1" NODE_BLOCK_ID="1"/>
     <NODE ID="2" STATE="Normal" NAME="Node#2" NODE_BLOCK_ID="1"/>
     <NODE ID="3" STATE="Normal" NAME="Node#3" NODE_BLOCK_ID="2"/>
     <NODE ID="4" STATE="Normal" NAME="Node#4" NODE_BLOCK_ID="2"/>
-    <NODE ID="5" STATE="Normal" NAME="Node#5" NODE_BLOCK_ID="1"/>
 </dataset>

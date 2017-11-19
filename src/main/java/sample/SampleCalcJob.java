@@ -3,6 +3,8 @@ package sample;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.SQLException;
+
 public class SampleCalcJob implements Job {
     private @Setter Calculator instanceA;
     private @Setter Calculator instanceB;
@@ -30,7 +32,7 @@ public class SampleCalcJob implements Job {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws SQLException {
         resultA = instanceA.add(1,2);
         resultB = instanceB.add(3,4);
         resultC = instanceC.add(5,6);
