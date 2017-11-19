@@ -3,12 +3,26 @@ package sample;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.TestName;
+
+import java.io.IOException;
 
 public class CalculatorTest {
     Calculator calc;
+
+    @Rule
+    public TestName testName = new TestName();
+
+    @BeforeClass
+    public static void before() throws IOException {
+        // TestListWriter.create();
+    }
+
+    @AfterClass
+    public static void after() throws IOException {
+        // TestListWriter.destroy();
+    }
 
     @Before
     public void setup(){
@@ -16,7 +30,8 @@ public class CalculatorTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() throws IOException {
+        // TestListWriter.write(testName.getMethodName()+"\n");
     }
 
     @Test

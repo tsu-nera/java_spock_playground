@@ -7,7 +7,9 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 import java.io.File;
 
@@ -16,6 +18,9 @@ import static org.junit.Assert.*;
 public class PairTest {
     private Pair pair;
     private static IDatabaseTester databaseTester;
+
+    @Rule
+    public TestName testName = new TestName();
 
     @Before
     public void setUp() throws Exception {
@@ -31,6 +36,7 @@ public class PairTest {
     public void tearDown() throws Exception {
         databaseTester.setTearDownOperation(DatabaseOperation.NONE);
         databaseTester.onTearDown();
+        System.out.println(testName.getMethodName());
     }
 
     @Test
