@@ -16,8 +16,6 @@ public class Pair {
         rs.next();
         nbCount = Integer.parseInt(rs.getString("cnt"));
 
-        System.out.println(nbCount);
-
         List<Long> nList = new ArrayList<>();
         if (nbCount < 3){
             return Boolean.FALSE;
@@ -36,13 +34,13 @@ public class Pair {
         if (nList.contains(id)) {
             nList.remove(id);
             long rCount = nList.stream()
-                    .map(i -> "node#" + i.toString())
-                    .map(name -> String.format("select state from HOGE where name = '%s';", name))
+                    .map(i -> "Node#" + i.toString())
+                    .map(name -> String.format("select state  as status from NODE where name = '%s';", name))
                     .map(sql -> {
                         try {
                             ResultSet r = conn.prepareStatement(sql).executeQuery();
                             r.next();
-                            return (String)r.getObject(1);
+                            return r.getString("status");
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <HOGE ID="1" STATE="normal" NAME="name#1"/>
-    <HOGE ID="2" STATE="normal" NAME="name#2"/>
-    <HOGE ID="3" STATE="normal" NAME="name#3"/>
-    <HOGE ID="4" STATE="normal" NAME="name#4"/>
-    <HOGE ID="5" STATE="normal" NAME="name#5"/>
+    <STORAGE ID="1"/>
+    <NB ID="1" NAME="NB#1" STORAGE_ID="1"/>
+    <NB ID="2" NAME="NB#2" STORAGE_ID="1"/>
+    <NODE ID="1" STATE="Normal" NAME="Node#1" NODE_BLOCK_ID="1"/>
+    <NODE ID="2" STATE="Normal" NAME="Node#2" NODE_BLOCK_ID="1"/>
+    <NODE ID="3" STATE="Normal" NAME="Node#3" NODE_BLOCK_ID="2"/>
+    <NODE ID="4" STATE="Normal" NAME="Node#4" NODE_BLOCK_ID="2"/>
+    <NODE ID="5" STATE="Normal" NAME="Node#5" NODE_BLOCK_ID="1"/>
 </dataset>

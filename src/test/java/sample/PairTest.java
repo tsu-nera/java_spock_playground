@@ -2,7 +2,6 @@ package sample;
 
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
@@ -11,8 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 

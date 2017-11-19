@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class DbUnitSample {
-    private static final String SQL = "update HOGE set state = 'error' where name = 'name#3';";
+    private static final String SQL = "update NODE set state = 'Fault' where name = 'Node#3';";
 
     public void execute() {
         try(Connection conn = DriverManager.getConnection(

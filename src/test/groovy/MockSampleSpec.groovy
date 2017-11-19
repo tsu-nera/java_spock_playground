@@ -50,7 +50,7 @@ class MockSampleSpec extends Specification {
         sample.setMgr(mgr)
 
         when:
-        sample.sendMsg("hoge")
+        sample.sendMsg("NODE")
 
         then:
         thrown(IllegalArgumentException)

@@ -49,10 +49,10 @@ public class DbUnitSampleTest {
         sample.execute();
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(
                 new File("src/test/resources/db/dbunit/After.xml"));
-        ITable expectedTable = expectedDataSet.getTable("HOGE");
+        ITable expectedTable = expectedDataSet.getTable("NODE");
 
         IDataSet databaseDataSet = databaseTester.getConnection().createDataSet();
-        ITable actualTable = databaseDataSet.getTable("HOGE");
+        ITable actualTable = databaseDataSet.getTable("NODE");
         ITable sortedTable = new SortedTable(actualTable, new String[]{"id"});
 
         Assertion.assertEquals(expectedTable, sortedTable);
@@ -62,15 +62,15 @@ public class DbUnitSampleTest {
     public void state更新2() throws Exception {
         sample.execute();
         IDataSet databaseDataSet = databaseTester.getConnection().createDataSet();
-        ITable actualTable = databaseDataSet.getTable("HOGE");
+        ITable actualTable = databaseDataSet.getTable("NODE");
 
-        String actualState = "normal";
+        String actualState = "Normal";
         for(int i=0; i < actualTable.getRowCount(); i++) {
-            if (actualTable.getValue(i, "name").toString().equals("name#3")) {
+            if (actualTable.getValue(i, "name").toString().equals("Node#3")) {
                 actualState = actualTable.getValue(i, "state").toString();
                 break;
             }
         }
-        assertThat("error", is(actualState));
+        assertThat("Fault", is(actualState));
     }
 }

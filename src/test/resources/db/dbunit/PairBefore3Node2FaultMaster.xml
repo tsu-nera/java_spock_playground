@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <NB ID="1" NAME="NB#1"/>
-    <NB ID="2" NAME="NB#2"/>
-    <NB ID="3" NAME="NB#2"/>
-    <HOGE ID="1" STATE="Normal" NAME="node#1"/>
-    <HOGE ID="2" STATE="Fault" NAME="node#2"/>
-    <HOGE ID="3" STATE="Normal" NAME="node#3"/>
-    <HOGE ID="4" STATE="Normal" NAME="node#4"/>
-    <HOGE ID="5" STATE="Fault" NAME="node#5"/>
-    <HOGE ID="6" STATE="Normal" NAME="node#6"/>
+    <STORAGE ID="1"/>
+    <NB ID="1" NAME="NB#1" STORAGE_ID="1"/>
+    <NB ID="2" NAME="NB#2" STORAGE_ID="1"/>
+    <NB ID="3" NAME="NB#3" STORAGE_ID="1"/>
+    <NODE ID="1" STATE="Normal" NAME="Node#1" NODE_BLOCK_ID="1"/>
+    <NODE ID="2" STATE="Fault" NAME="Node#2" NODE_BLOCK_ID="1"/>
+    <NODE ID="3" STATE="Normal" NAME="Node#3" NODE_BLOCK_ID="2"/>
+    <NODE ID="4" STATE="Normal" NAME="Node#4" NODE_BLOCK_ID="2"/>
+    <NODE ID="5" STATE="Fault" NAME="Node#5" NODE_BLOCK_ID="3"/>
+    <NODE ID="6" STATE="Normal" NAME="Node#6" NODE_BLOCK_ID="3"/>
 </dataset>
