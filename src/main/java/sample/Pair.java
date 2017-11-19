@@ -5,14 +5,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pair {
+    PreparedStatement stmt;
+    ResultSet rs;
+    Connection conn;
 
     public Boolean isMD(Long id) throws SQLException {
-        int nbCount;
-        Connection conn = DriverManager.getConnection(
+        conn = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5434/sampleDB", "postgres", "postgres");
 
-        PreparedStatement stmt = conn.prepareStatement("select count(*) as cnt from NB;");
-        ResultSet rs = stmt.executeQuery();
+        return (isPairDown(id) || isFlagOn(id) || isMastersDown(id));
+    }
+
+    private Boolean isPairDown(Long id) throws SQLException {
+        Long pairId = getPairId(id);
+
+        String targetName = String.format("Node#%s", pairId.toString());
+        stmt = conn.prepareStatement(String.format("SELECT state as status from NODE where name = '%s';", targetName));
+        rs = stmt.executeQuery();
+        rs.next();
+        String status = rs.getString("status");
+
+        return !isReadyStatus(status);
+    }
+
+    private Boolean isFlagOn(Long id) throws SQLException {
+        String targetName = String.format("Node#%s", id.toString());
+        stmt = conn.prepareStatement(String.format("SELECT flag1, flag2, flag3, flag4 from NODE where name = '%s';", targetName));
+        rs = stmt.executeQuery();
+        rs.next();
+        Boolean flag1 = rs.getBoolean(1);
+        Boolean flag2 = rs.getBoolean(2);
+        Boolean flag3 = rs.getBoolean(3);
+        Boolean flag4 = rs.getBoolean(4);
+        return flag1 || flag2 || flag3 || flag4;
+    }
+
+    private Boolean isMastersDown(Long id) throws SQLException {
+        int nbCount;
+        stmt = conn.prepareStatement("select count(*) as cnt from NB;");
+        rs = stmt.executeQuery();
         rs.next();
         nbCount = Integer.parseInt(rs.getString("cnt"));
 
@@ -46,7 +77,7 @@ public class Pair {
                         }
                         return "";
                     })
-                    .map(this::isReady)
+                    .map(this::isReadyStatus)
                     .filter(r -> r == Boolean.FALSE)
                     .count();
 
@@ -57,7 +88,7 @@ public class Pair {
         return Boolean.FALSE;
     }
 
-    private Boolean isReady(String status) {
+    private Boolean isReadyStatus(String status) {
         switch (status) {
             case "Normal":
                 return Boolean.TRUE;

@@ -1,9 +1,7 @@
 package sample;
 
-import javassist.tools.rmi.Sample;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
@@ -17,7 +15,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.File;
-import java.net.MalformedURLException;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Sample2Job.class})

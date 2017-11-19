@@ -23,6 +23,10 @@ CREATE TABLE NODE (
     UUID UUID NOT NULL DEFAULT uuid_generate_v4(),
     NAME VARCHAR(255),
     node_block_id bigint NOT NULL,
+    flag1 bool default false,
+    flag2 bool default false,
+    flag3 bool default false,
+    flag4 bool default false,
     STATE VARCHAR(10)
 );
 

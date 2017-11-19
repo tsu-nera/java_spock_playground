@@ -45,6 +45,28 @@ public class PairTest {
     }
 
     @Test
+    public void node2PairDown() throws Exception {
+        IDataSet dataSet = new FlatXmlDataSetBuilder().build(
+                new File("src/test/resources/db/dbunit/PairBefore2NodePairDown.xml"));
+        databaseTester.setDataSet(dataSet);
+        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        databaseTester.onSetup();
+
+        assertTrue(pair.isMD(1L));
+    }
+
+    @Test
+    public void node2FlagOn() throws Exception {
+        IDataSet dataSet = new FlatXmlDataSetBuilder().build(
+                new File("src/test/resources/db/dbunit/PairBefore2NodeFlagOn.xml"));
+        databaseTester.setDataSet(dataSet);
+        databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        databaseTester.onSetup();
+
+        assertTrue(pair.isMD(1L));
+    }
+
+    @Test
     public void node3AllNormal() throws Exception {
         IDataSet dataSet = new FlatXmlDataSetBuilder().build(
                 new File("src/test/resources/db/dbunit/PairBefore3NodeNormal.xml"));

@@ -7,19 +7,38 @@ import java.sql.*;
 public class Sample2Job implements Job {
 
     Sample2Exec exec;
+    PreparedStatement stmt;
+    ResultSet rs;
+    Connection conn;
 
     @Setter
     private Long id;
 
     @Override
     public void prepare() throws SQLException {
-        Connection conn = DriverManager.getConnection(
+        conn = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5434/sampleDB", "postgres", "postgres");
-        PreparedStatement stmt = conn.prepareStatement("SELECT model from STORAGE;");
-        ResultSet rs = stmt.executeQuery();
+
+        stmt = conn.prepareStatement("SELECT model from STORAGE;");
+        rs = stmt.executeQuery();
         rs.next();
         String model = (String) rs.getObject(1);
-        System.out.println(model);
+
+        assertId(model, id);
+
+        String targetName = String.format("Node#%s", id.toString());
+        stmt = conn.prepareStatement(String.format("SELECT state from NODE where name = '%s';", targetName));
+        rs = stmt.executeQuery();
+        rs.next();
+        String status = (String) rs.getObject(1);
+
+        assertReadyStatus(status);
+
+        exec = new Sample2Exec(id, 0L, 0L);
+        exec.prepare();
+    }
+
+    private void assertId(String model, Long id) throws SQLException {
         if (id == null) {
             throw new IllegalArgumentException("Invalid id");
         } else if (model.equals("Small")) {
@@ -29,9 +48,17 @@ public class Sample2Job implements Job {
         } else {
             throw new UnsupportedOperationException();
         }
+    }
 
-        exec = new Sample2Exec(id, 0L, 0L);
-        exec.prepare();
+    private void assertReadyStatus(String status) throws IllegalStateException {
+        switch (status) {
+            case "Normal":
+            case "Warning":
+            case "Maintenance":
+                return;
+            default:
+                throw new IllegalStateException(String.format("Invalid State:%s", status));
+        }
     }
 
     @Override
@@ -44,5 +71,3 @@ public class Sample2Job implements Job {
         exec.revert();
     }
 }
-
-

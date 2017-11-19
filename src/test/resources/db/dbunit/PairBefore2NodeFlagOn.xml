@@ -3,8 +3,8 @@
     <STORAGE ID="1" MODEL="Small"/>
     <NB ID="1" NAME="NB#1" STORAGE_ID="1"/>
     <NB ID="2" NAME="NB#2" STORAGE_ID="1"/>
-    <NODE ID="1" STATE="Normal" NAME="Node#1" FLAG1="false" FLAG2="false" FLAG3="false" FLAG4="false" NODE_BLOCK_ID="1"/>
+    <NODE ID="1" STATE="Normal" NAME="Node#1" FLAG1="false" FLAG2="false" FLAG3="true" FLAG4="false" NODE_BLOCK_ID="1"/>
     <NODE ID="2" STATE="Normal" NAME="Node#2" FLAG1="false" FLAG2="false" FLAG3="false" FLAG4="false" NODE_BLOCK_ID="1"/>
-    <NODE ID="3" STATE="Fault" NAME="Node#3" FLAG1="false" FLAG2="false" FLAG3="false" FLAG4="false" NODE_BLOCK_ID="2"/>
+    <NODE ID="3" STATE="Normal" NAME="Node#3" FLAG1="false" FLAG2="false" FLAG3="false" FLAG4="false" NODE_BLOCK_ID="2"/>
     <NODE ID="4" STATE="Normal" NAME="Node#4" FLAG1="false" FLAG2="false" FLAG3="false" FLAG4="false" NODE_BLOCK_ID="2"/>
 </dataset>
