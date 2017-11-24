@@ -2,6 +2,7 @@ package sample;
 
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
+import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
@@ -15,8 +16,8 @@ import java.io.File;
 
 import static org.junit.Assert.*;
 
-public class PairTest {
-    private Pair pair;
+public class Sample2ExecStage1Test {
+    private Sample2ExecStage1 sample2ExecStage1;
     private static IDatabaseTester databaseTester;
 
     @Rule
@@ -29,7 +30,8 @@ public class PairTest {
                 "postgres",
                 "postgres",
                 "public");
-        pair = new Pair();
+        sample2ExecStage1 = new Sample2ExecStage1();
+        sample2ExecStage1.setId(1L);
     }
 
     @After
@@ -47,7 +49,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertFalse(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertFalse(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -58,7 +62,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertTrue(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertTrue(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -69,7 +75,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertTrue(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertTrue(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -80,7 +88,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertFalse(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertFalse(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -91,7 +101,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertFalse(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertFalse(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -102,7 +114,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertTrue(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertTrue(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -113,7 +127,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertFalse(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertFalse(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -124,7 +140,9 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertFalse(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertFalse(sample2ExecStage1.isResult());
     }
 
     @Test
@@ -135,6 +153,8 @@ public class PairTest {
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 
-        assertTrue(pair.isMD(1L));
+        sample2ExecStage1.prepare();
+        sample2ExecStage1.execute();
+        assertTrue(sample2ExecStage1.isResult());
     }
 }

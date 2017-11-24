@@ -35,7 +35,7 @@ public class Sample2Job implements Job {
         assertReadyStatus(status);
 
         exec = new Sample2Exec(id, 0L, 0L);
-        exec.prepare();
+        exec.prepare(1L, "hi");
     }
 
     private void assertId(String model, Long id) throws SQLException {
@@ -62,7 +62,7 @@ public class Sample2Job implements Job {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws SQLException {
         exec.execute();
     }
 

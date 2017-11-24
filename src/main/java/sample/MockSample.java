@@ -25,6 +25,7 @@ public class MockSample {
     }
 
     public static int sendMsg4(String msg) {
+        MessageManagerStatic.send2(msg);
         return MessageManagerStatic.send(msg);
     }
 

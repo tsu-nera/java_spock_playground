@@ -3,6 +3,7 @@ package sample;
 import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
+import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.SortedTable;
@@ -13,6 +14,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,12 +30,12 @@ public class DbUnitSampleTest {
         databaseTester = new JdbcDatabaseTester("org.postgresql.Driver",
                 "jdbc:postgresql://localhost:5434/sampleDB",
                 "postgres",
-                "postgres",
-                "public");
+                "postgres");
 
         IDataSet dataSet = new FlatXmlDataSetBuilder().build(
                 new File("src/test/resources/db/dbunit/Before.xml"));
         databaseTester.setDataSet(dataSet);
+
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
 

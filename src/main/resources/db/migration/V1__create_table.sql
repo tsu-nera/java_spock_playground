@@ -1,9 +1,15 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION  IF NOT EXISTS pgcrypto;
 
+CREATE TABLE LOCK (
+    id bigint NOT NULL,
+    uuid uuid ,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE STORAGE (
     id bigint NOT NULL,
-    uuid uuid DEFAULT gen_random_uuid() NOT NULL,
+    UUID uuid DEFAULT gen_random_uuid() NOT NULL,
     status varchar(32),
     model varchar(32),
     PRIMARY KEY (id)

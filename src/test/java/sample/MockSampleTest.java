@@ -14,6 +14,9 @@ import java.lang.reflect.Method;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
@@ -62,10 +65,11 @@ public class MockSampleTest {
     }
 
     @Test
-    public void staticなメソッドをテストする() {
+    public void staticなメソッドをテストする() throws Exception {
         // https://github.com/powermock/powermock/wiki/Mockito#mocking-static-method
         PowerMockito.mockStatic(MessageManagerStatic.class);
-        Mockito.when(MessageManagerStatic.send("Hello")).thenReturn(1);
+        Mockito.when(MessageManagerStatic.send(anyObject())).thenReturn(1);
+        PowerMockito.doNothing().when(MessageManagerStatic.class, "send2", anyString());
 
         int ret = sample.sendMsg4("Hello");
 
