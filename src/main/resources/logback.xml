@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LogbackClassic" class="ch.qos.logback.classic.net.SocketAppender">
+        <RemoteHost>localhost</RemoteHost>
+        <Port>4560</Port>
+        <ReconnectionDelay>170</ReconnectionDelay>
+        <IncludeCallerData>true</IncludeCallerData>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/app.%d{yyyy-MM-dd}.log.tar.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE2" class="ch.qos.logback.core.FileAppender">
+        <file>logs/classic.lilith</file>
+        <encoder class="de.huxhorn.lilith.logback.encoder.ClassicLilithEncoder">
+            <IncludeCallerData>true</IncludeCallerData>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="LogbackClassic"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE2"/>
+    </root>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
